@@ -1,0 +1,122 @@
+$width-full: 100%;
+$month-color: #ede9dd;
+$font-color: #666;
+$border-color:#f4f4f4;
+$hover-color:#fff9e3;
+$dark-grey: #444;
+$orange: #fe8400;
+
+@mixin arrow_div{
+    width: 7px;
+    height: 0;
+    align-self: center;
+    border-style: solid;
+}
+@mixin arrow{
+    width: 20px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+}
+.App{
+    width: 50%;
+    margin : auto;
+}
+
+.month{
+    width: $width-full;
+    background-color : $month-color;
+    height : 50px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    .arrow.prev{
+        left: 0;
+        @include arrow;
+        div{
+            @include arrow_div;
+            border-width: 7px 7px 7px 0;
+            border-color: transparent  #e10500 transparent transparent;
+        } 
+    }
+    .arrow.next{
+        right: 0;
+        @include arrow;
+        div{
+            @include arrow_div;  
+            border-width: 7px 0 7px 7px;
+            border-color: transparent transparent transparent #e10500;
+        }
+    }
+    ul{
+        display: flex;
+        width:calc(100% - 40px) ;
+        .sub_month{
+            width: calc(100%/3);
+            line-height: 50px;
+            text-align: center;
+            color: $font-color;
+            cursor: pointer;        
+        }
+        .active{
+            background-color: white;
+            color:#e10500;
+            border-top: 2.5px solid $month-color;
+        }
+    }  
+}
+
+.weekday{
+    width: $width-full;
+    ul{
+        width: $width-full;
+        display: flex;
+        font-size: 14px;
+        border: 1px solid $border-color;
+        li{
+            width: calc( 100% / 7);
+            line-height: 30px;
+            font-size: 14px;
+            text-align: center;
+            color: $font-color;
+            font-weight: bold;
+        }
+    }
+}
+
+.date{
+    font-size: 12px;
+    ul{
+        width:100%;
+        display:flex;
+        flex-wrap: wrap;
+        li{
+            width: calc(100%/7);
+            height:auto;
+            border-right: 1px solid $border-color;
+            border-bottom: 1px solid $border-color;
+            &:hover{
+               background: $hover-color;
+            }
+            .title{
+                display: flex;
+                justify-content: space-between;
+                .num_date{
+                    line-height: 16px;
+                    color: $dark-grey;
+                    padding: 2px 0 0 2px;
+                }
+                .guaranteed{
+                    background: $orange;
+                    color: white;
+                    width: 50%;
+                    padding: 0 3px;
+                    text-align: center;
+                    line-height: 20px;
+                }
+            }          
+        }
+    }
+}
