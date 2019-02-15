@@ -5,6 +5,8 @@ $border-color:#f4f4f4;
 $hover-color:#fff9e3;
 $dark-grey: #444;
 $orange: #fe8400;
+$green:#66bb3c;
+$red:#e10500;
 
 @mixin arrow_div{
     width: 7px;
@@ -20,11 +22,36 @@ $orange: #fe8400;
     position: absolute;
     cursor: pointer;
 }
-.App{
-    width: 50%;
-    margin : auto;
+@mixin date-active{
+    border: 2px solid $green;
+    background: $hover-color;
 }
+.App{
+    width: 85%;
+    margin : auto;
 
+}
+.calendar{
+    width : 100%;
+    margin: auto;
+ 
+} 
+
+.switch{
+    position: relative;
+    width:100%;
+    height:17px;
+    margin:10px 0 5px;
+    cursor: pointer;
+    color: #0077b3;
+    p{
+        position: absolute;
+        right:0;
+        top:0;
+        height:auto;
+          border-bottom: 1px dashed #e3e3e3;
+    }
+}
 .month{
     width: $width-full;
     background-color : $month-color;
@@ -62,7 +89,7 @@ $orange: #fe8400;
         }
         .active{
             background-color: white;
-            color:#e10500;
+            color: $red;
             border-top: 2.5px solid $month-color;
         }
     }  
@@ -86,37 +113,256 @@ $orange: #fe8400;
     }
 }
 
-.date{
+.disable{
+    display: none;
+}
+.date-list{
+    width: $width-full;
     font-size: 12px;
-    ul{
+    border-left : 1px solid $border-color;
+  
+    min-height : 496px;
+    .disable{
+        display: none;
+    }
+    table{
+        width:100%;
+    }
+    tr{
         width:100%;
         display:flex;
-        flex-wrap: wrap;
-        li{
-            width: calc(100%/7);
-            height:auto;
-            border-right: 1px solid $border-color;
-            border-bottom: 1px solid $border-color;
+        flex-direction: column;
+        td.date-active{
+            @include date-active;
+        }
+        td{
+            width: 100%;
+            height:62px;
+            // border-right: 1px solid $border-color;
+            // border-bottom: 1px solid $border-color;
+            border: 1px solid $border-color;
+            display: flex;
+            padding:5px;
+            box-sizing: border-box;
+            // margin-right: -1px;
+            // margin-bottom: -1px;
+        
             &:hover{
                background: $hover-color;
+               border: 1px solid $green;
+            //    margin-bottom: 0px;
             }
             .title{
                 display: flex;
-                justify-content: space-between;
+                flex-direction: column;
+                justify-content: center;
+                padding: 5px;
+                color: $font-color;
+                text-align: center;
                 .num_date{
                     line-height: 16px;
-                    color: $dark-grey;
-                    padding: 2px 0 0 2px;
+                    padding: 2px 0 0 1px;
+                    font-size: 24px;
+                    margin-bottom: 10px;
                 }
-                .guaranteed{
-                    background: $orange;
-                    color: white;
-                    width: 50%;
-                    padding: 0 3px;
-                    text-align: center;
-                    line-height: 20px;
+                .list-weekday{
+                    font-size: 16px;   
                 }
-            }          
+              
+        
+            }
+         
         }
     }
+}
+
+.date-list section.middle{
+    width: 77%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow:1;
+    padding: 0 5px 5px;
+    font-size: 14px;
+    div{
+        display: flex;
+        justify-content: flex-start;
+    }
+     .sell , .group{
+         color: $font-color;
+         margin-right: 30px;
+         line-height:1.5;
+     }
+     .guaranteed{
+         width: 52px;
+         background: $green;
+         color: white;
+         padding: 0 5px;
+         text-align: center;
+         margin-top: 5px;
+         font-weight: 400;
+         line-height: 1;
+     }
+ }
+ .date-list section.right{
+    font-size: 16px;
+    padding:5px;
+    .status{
+        color: $orange;
+        text-align: right;
+        line-height: 1.5;
+      } 
+      .price{
+          color:$red;
+      }
+
+ }
+/////////////////////////
+ .date-calendar{
+    width: $width-full;
+    font-size: 12px;
+    border-left : 1px solid $border-color;
+    .disable{
+        display: none;
+    }
+    table{
+        width:100%;
+    }
+    tr{
+        width:100%;
+        display:flex;
+      
+        flex-wrap: wrap;
+        td.date-active{
+            @include date-active;
+        }
+        td{
+            position: relative;
+            width: calc(100% / 7);
+            height:90px;
+            border-right: 1px solid $border-color;
+            border-bottom: 1px solid $border-color;
+            border-left: 1px solid transparent;
+            border-top: 1px solid transparent;
+                
+            display: flex;
+            flex-direction : column;
+            padding:5px;
+            box-sizing: border-box;
+            // margin-right: -1px;
+            // margin-bottom: -1px;
+        
+            &:hover{
+               background: $hover-color;
+            //    border: 1px solid $green;
+            //    margin-bottom: 0px;
+            }
+            &:empty{
+                   background:  #f8f8f8;
+                   border-right: none;
+                 }
+            .title{
+                // display: flex;
+                // flex-direction: column;
+                // justify-content: center;
+                // padding: 5px;
+                text-align: left;
+                color: $font-color;
+                .num_date{
+                
+                    padding: 2px 0 0 1px;
+                  
+                    margin-bottom: 5px;
+                }
+              
+        
+            }
+         
+        }
+    }
+ }
+
+.date-calendar section.middle{
+    div{
+       margin-bottom: 2px;
+    }
+     .sell , .group{
+         color: $font-color;
+        //  margin-right: 30px;
+        // line-height:1.5;
+     }
+     .guaranteed{
+         position: absolute;
+         right:0;
+        top:0;
+         width: 52px;
+         background: $orange;
+        color: white;
+        width: 50%;
+        padding: 0 3px;
+        text-align: center;
+        line-height: 20px;
+     }
+     .status{
+        // color: $orange;
+        text-align: left;
+        line-height: 1.5;
+        &.register{
+            color: #24a07c;
+        }
+        &.waiting{
+            color:#24a07c;
+        }
+        &.reserve{
+            color: #24a07c;
+        }
+        &.deadline{
+            color:#ff7800
+        }
+        &.full{
+            color:#ff7800;
+        }
+        &.closed{
+            color:#ff7800;
+        }
+      } 
+ }
+ .date-calendar section.right{
+      margin-top:1px;
+      .price{
+          color:$red;
+      }
+ }
+// .status.register{
+//         color: #24a07c;
+//     }
+// .status.waiting{
+//     color:#24a07c;
+// }
+// .status.reserve{
+//     color: #24a07c;
+// }
+// .status.deadline{
+//     color:#ff7800
+// }
+// .status.full{
+//     color:#ff7800;
+// }
+// .status.closed{
+//     color:#ff7800;
+// }
+
+.pagenumber{
+    border-top : 1px solid $border-color; 
+    margin: 20px 0;
+    ul{
+
+    display: flex;
+    width : 20%;
+    margin : auto;
+    justify-content: center;
+    li{
+        margin: 0 10px;
+    }
+}
 }

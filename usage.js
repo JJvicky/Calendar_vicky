@@ -8,6 +8,8 @@
 
 // Plugin usage
 
+//判斷有相同日期: 可報名>>保證出團>>最低價
+
 $('.calendars').calendar({
 	dataSource: [  // 資料來源的輸入接口 [ array | string ] 如果是 string的話，請輸入網址
 		{
@@ -21,7 +23,7 @@ $('.calendars').calendar({
 		// ...
 	],
 	// 輸入一開始要在哪一個月份 [string] YYYYMM，若輸入的年月沒有資料，
-	// 就要找相近的年月，若前一個月後一個月都有資料，就顯示資料比數比較多的那一個月
+	// 就要找相近的年月，若前一個月後一個月都有資料，就顯示資料比數比較多的那一個月 
 	initYearMonth: '201705',
 	// 設定各資料的key
 	dataKeySetting: {
